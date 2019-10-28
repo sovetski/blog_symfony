@@ -7,10 +7,13 @@ use App\Repository\ArticleRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
+/**
+ * @Route("/blog")
+ */
 class ArticleController extends AbstractController
 {
     /**
-     * @Route("/blog")
+     * @Route("/")
      */
     public function index(ArticleRepository $repository)
     {
