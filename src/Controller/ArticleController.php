@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class ArticleController extends AbstractController
 {
     /**
-     * @Route("/")
+     * @Route("/", name="app_blog")
      */
     public function index(ArticleRepository $repository)
     {

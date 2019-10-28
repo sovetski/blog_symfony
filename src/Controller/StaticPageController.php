@@ -8,7 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class StaticPageController extends AbstractController
 {
     /**
-     * @Route("/")
+     * @Route("/", name="app_index")
      */
     public function index()
     {
