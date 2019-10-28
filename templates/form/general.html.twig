@@ -1,0 +1,20 @@
+{% if form is not defined %}
+{% set form = form_var %}
+{% endif %}
+
+{{ form_start(form) }}
+    {% for child in form.children if not child.rendered %}
+        <div class="control-group form-group">
+            <div class="controls">
+                {% if 'token' not in form_label(child) %}
+                    {{ form_label(child) }}
+                {% endif %}
+                {{ form_widget(child, { 'attr': {'class': 'form-control'} }) }}
+                <p class="help-block">{{ form_help(child) }}</p>
+                <div id="success">{{ form_errors(child) }}</div>
+            </div>
+        </div>
+    {% endfor %}
+    <!-- For success/fail messages -->
+    <button class="{{ class }}">{{ action }}</button>
+{{ form_end(form) }}
