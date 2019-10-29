@@ -67,7 +67,7 @@ class AdminController extends AbstractController
      */
     public function deleteArticle(Request $request, Article $article)
     {
-        return $this->removeArticle($article, 'L\'article à bien été supprimée !');
+        return $this->removeArticle($article, 'L\'article à bien été supprimé !');
     }
 
     private function removeArticle(Article $article, string $message)
