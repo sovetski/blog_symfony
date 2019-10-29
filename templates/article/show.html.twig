@@ -92,7 +92,24 @@
             </div>
 
             <!-- Sidebar Widgets Column -->
-            {% include('base.sidebar.html.twig') %}
+            {% set sidebar_top %}
+                <div class="card my-4">
+                    <h5 class="card-header">Administration</h5>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <ul class="list-unstyled mb-0">
+                                    <li class="btn-group" role="group" aria-label="Basic example">
+                                        <a class="btn btn-warning" href="{{ path('app_admin_blog_article_edit', {id: article.id}) }}">Modifier</a>
+                                        <a class="btn btn-danger" href="{{ path('app_admin_blog_article_delete', {id: article.id}) }}">Supprimer</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endset %}
+            {{ include('base.sidebar.html.twig', {custom_sidebar_top: sidebar_top}) }}
 
         </div>
         <!-- /.row -->

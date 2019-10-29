@@ -16,7 +16,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class AdminController extends AbstractController
 {
     /**
-     * @Route("/blog/article/new", name="app_admin_blog_article_new")
+     * @Route("/blog/article/new", name="_blog_article_new")
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      */
@@ -40,7 +40,7 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route("/blog/article/{id}/edit", requirements={"id": "\d+"}, methods={"GET", "POST"})
+     * @Route("/blog/article/{id}/edit", name="_blog_article_edit", requirements={"id": "\d+"}, methods={"GET", "POST"})
      * @IsGranted("ROLE_ADMIN")
      */
     public function editArticle(Request $request, Article $article)
@@ -62,7 +62,7 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route("/blog/article/{id}/delete", requirements={"id": "\d+"}, methods={"GET", "POST"})
+     * @Route("/blog/article/{id}/delete", name="_blog_article_delete", requirements={"id": "\d+"}, methods={"GET", "POST"})
      * @IsGranted("ROLE_ADMIN")
      */
     public function deleteArticle(Request $request, Article $article)

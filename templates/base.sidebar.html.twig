@@ -1,5 +1,10 @@
 <div class="col-md-4">
 
+    {% if custom_sidebar_top is defined %}
+    <!-- Custom sidebar top -->
+    {{ custom_sidebar_top }}
+    {% endif %}
+
     <!-- Search Widget -->
     <div class="card mb-4">
         <h5 class="card-header">Search</h5>
