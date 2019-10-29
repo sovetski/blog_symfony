@@ -39,6 +39,49 @@ class AdminController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/blog/article/{id}/edit", requirements={"id": "\d+"}, methods={"GET", "POST"})
+     * @IsGranted("ROLE_ADMIN")
+     */
+    public function editArticle(Request $request, Article $article)
+    {
+        $form = $this->createForm(ArticleType::class, $article, [
+            'full' => false,
+        ]);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()){
+            return $this->persistArticle($article, 'L\'article à bien été modifié !');
+        }
+
+        return $this->render('admin/article.edit.html.twig', [
+            'form' => $form->createView(),
+            'article' => $article,
+        ]);
+    }
+
+    /**
+     * @Route("/blog/article/{id}/delete", requirements={"id": "\d+"}, methods={"GET", "POST"})
+     * @IsGranted("ROLE_ADMIN")
+     */
+    public function deleteArticle(Request $request, Article $article)
+    {
+        return $this->removeArticle($article, 'L\'article à bien été supprimée !');
+    }
+
+    private function removeArticle(Article $article, string $message)
+    {
+
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($article);
+        $em->flush();
+
+        $this->addFlash('success', $message);
+
+        return $this->redirectToRoute('app_blog');
+    }
+
     private function persistArticle(Article $article, string $message)
     {
 
