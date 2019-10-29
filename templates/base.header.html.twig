@@ -7,17 +7,17 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
+                <li class="nav-item active">
                     <a class="nav-link" href="{{ url('app_index') }}">Accueil</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url('app_blog') }}">Blog</a>
                 </li>
-                <li class="nav-item active dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownUser" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         {{ app.user ? "Mon Compte" : "Authentification" }}
                     </a>
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownUser">
                         {% if app.user %}
                         <a class="dropdown-item" href="{{ url('app_logout') }}">Se déconnecter</a>
                         {% else %}
@@ -26,6 +26,16 @@
                         {% endif %}
                     </div>
                 </li>
+                {% if is_granted('ROLE_ADMIN') %}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownAdmin" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Administration
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownAdmin">
+                        <a class="dropdown-item" href="{{ url('app_admin_blog_article_new') }}">Nouveau article</a>
+                    </div>
+                </li>
+                {% endif %}
             </ul>
         </div>
     </div>
