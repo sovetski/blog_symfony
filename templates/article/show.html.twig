@@ -92,8 +92,9 @@
 
             </div>
 
+            {% if is_granted('ROLE_ADMIN') %}
             <!-- Sidebar Widgets Column -->
-            {% set sidebar_top %}
+                {% set sidebar_top %}
                 <div class="card mb-4">
                     <h5 class="card-header">Administration</h5>
                     <div class="card-body">
@@ -110,6 +111,9 @@
                     </div>
                 </div>
             {% endset %}
+            {% else %}
+                {% set sidebar_top = null %}
+            {% endif %}
             {{ include('base.sidebar.html.twig', {custom_sidebar_top: sidebar_top}) }}
 
         </div>
